@@ -1,0 +1,14 @@
+:root{
+    fundo-principal: #030303;
+  --fundo-secundario: #0B0B0D;
+  --cor-destaque: #FF6A1A;
+  --cor-destaque-claro: #FF9A3C;
+  --texto-principal: #F2F2F2;
+  --texto-secundario: #9A9A9A;
+
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
