@@ -76,6 +76,16 @@ section {
     padding: 32px 4%;
 }
 
+.card {
+    padding: 32px 4%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(3, 3, 3, 0.8);
+    box-shadow: 0 4px 6px var(--fundo-principal);
+
+}
+
 h1,
 h2 {
     color: var(--texto-principal);
