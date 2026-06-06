@@ -9,6 +9,7 @@
     --cor-destaque-claro: #FF9A3C;
     --texto-principal: #F2F2F2;
     --texto-secundario: #9A9A9A;
+    --descricao-card: #9A9A9A;
     --font-family1: 'Orbitron', sans-serif;
     --font-family2: 'Montserrat', sans-serif;
 }
@@ -185,7 +186,7 @@ h2 {
 }
 
 p {
-    color: var(--texto-secundario);
+    color: var(--descricao-card);
     text-align: center;
     font-size: 1rem;
     font-weight: 500;
@@ -218,4 +219,29 @@ p {
         background-position: center top;
         background-repeat: no-repeat;
     }
+}
+
+.temas {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 15px;
+    background-color: var(--fundo-principal);
+    margin-bottom: 10px;
+}
+
+.temas button {
+    padding: 8px 14px;
+    border: 1px solid var(--cor-destaque);
+    background-color: transparent;
+    color: var(--texto-principal);
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: var(--font-family2);
+    
+}
+
+.temas button:hover {
+    background-color: var(--cor-destaque);
+    color: var(--fundo-principal);
 }
