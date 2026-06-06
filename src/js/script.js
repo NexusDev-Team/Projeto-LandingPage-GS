@@ -11,6 +11,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
     }
 })
 
+// BOTÃO QUE MUDA A COR
+
 function trocarTema(tema) {
     const root = document.documentElement;
 
