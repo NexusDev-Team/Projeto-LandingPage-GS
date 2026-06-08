@@ -34,3 +34,26 @@ function trocarTema(tema) {
         root.style.setProperty('--descricao-card', '#9A9A9A');
     }
 }
+
+//SlideShow
+document.querySelectorAll('.slideshow').forEach(slideshow => {
+
+    const slides = slideshow.querySelectorAll('.slide');
+
+    let atual = 0;
+
+    setInterval(() => {
+
+        slides[atual].classList.remove('active');
+
+        atual++;
+
+        if(atual >= slides.length){
+            atual = 0;
+        }
+
+        slides[atual].classList.add('active');
+
+    }, 4000);
+
+});
