@@ -189,7 +189,7 @@ h2 {
 p {
     color: var(--descricao-card);
     text-align: center;
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 500;
     max-width: 600px;
     font-family: var(--font-family2);
