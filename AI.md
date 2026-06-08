@@ -195,3 +195,138 @@ document.querySelectorAll('.slideshow').forEach(slideshow => {
 Cada seção passou a possuir seu próprio slideshow independente, exibindo imagens relacionadas ao tema apresentado. Além disso, foi implementada a alternância automática das imagens, melhorando a experiência visual e tornando a navegação mais dinâmica e intuitiva. -->
 
 <!-- --------------------------------------------------------------- -->
+
+<!-- ARRUMANDO FORMATAÇÃO PARA MOBILE -->
+
+prompt: * meu index e meu css * como arrumar a formatação para mobile
+
+<!-- RESPOSTA -->
+
+Hoje seu p está com font-size: 2rem, isso é muito grande para celular. E seu h1, h2 está assim:
+
+font-size: clamp(4.5rem, 5vw, 4.3rem);
+
+Isso está errado porque o primeiro valor é maior que o último. O certo seria algo como:
+
+font-size: clamp(2.2rem, 8vw, 4rem);
+
+Adicione esse CSS no final do seu arquivo:
+
+@media (max-width: 768px) {
+
+    header {
+        padding: 18px 4%;
+        position: sticky;
+        top: 0;
+        z-index: 20;
+    }
+
+    .temas {
+        padding: 10px 0;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 15px;
+    }
+
+    .temas button {
+        padding: 7px 10px;
+        font-size: 0.8rem;
+    }
+
+    .menu-hamburguer {
+        display: flex;
+        margin: 0 auto;
+    }
+
+    nav {
+        display: none !important;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: rgba(3, 3, 3, 0.95);
+        padding: 25px 0;
+        z-index: 1001;
+    }
+
+    nav.active {
+        display: flex !important;
+        justify-content: center;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 18px;
+        align-items: center;
+    }
+
+    header nav ul li a {
+        font-size: 0.9rem;
+        letter-spacing: 2px;
+    }
+
+    #imgFundo {
+        height: 80vh;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    #container section {
+        min-height: auto;
+        padding: 70px 5%;
+    }
+
+    .secao-com-slide,
+    .secao-com-slide.reverse {
+        flex-direction: column !important;
+        gap: 30px;
+        padding: 70px 5%;
+    }
+
+    .slideshow {
+        width: 100%;
+        height: 260px;
+        max-width: 100%;
+    }
+
+    .slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .slide-text {
+        left: 15px;
+        bottom: 15px;
+        font-size: 1rem;
+        max-width: 85%;
+    }
+
+    .secao-com-slide .card,
+    .card {
+        width: 100%;
+        max-width: 100%;
+        padding: 28px 20px;
+        border-radius: 14px;
+    }
+
+    h1,
+    h2 {
+        font-size: clamp(2.1rem, 10vw, 3rem);
+        line-height: 1.1;
+    }
+
+    p {
+        font-size: 1rem;
+        line-height: 1.6;
+        max-width: 100%;
+    }
+
+    .alvo-titulo span,
+    .aplicacao-titulo span {
+        display: block;
+    }
+}
+
+<!-- Resultado final: 
+diminui um pouco o titulo deixando o primeiro tamanho do clamp menor que o ultimo e adicionei esse media no fim do CSS -->
