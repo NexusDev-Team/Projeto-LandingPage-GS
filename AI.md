@@ -95,3 +95,103 @@ function trocarTema(tema) {
 mudei as cores e adicionei para mudar a cor do texto do card também.
 
 <!-- --------------------------------------------------------------- -->
+
+<!-- IMPLEMENTAÇÃO DE SLIDESHOW COM IMAGENS RELACIONADAS AO TEMA -->
+
+prompt: Implementação de slideshow com 3 imagens relacionadas ao tema da solução.
+
+me fale como adicionar esse requisito no meu projeto.
+
+<!-- RESPOSTA -->
+
+Foi criado um slideshow automático utilizando HTML, CSS e JavaScript para exibir imagens relacionadas a cada seção do projeto.
+
+HTML:
+
+Foi adicionada uma estrutura contendo um container `.slideshow` e múltiplos elementos `.slide`, cada um com uma imagem representando o conteúdo da seção.
+
+Exemplo:
+
+```html
+<div class="slideshow">
+    <div class="slide active">
+        <img src="./src/assets/mineracao.jpg" alt="Mineração">
+    </div>
+
+    <div class="slide">
+        <img src="./src/assets/maquinaDeMineracao.jpg" alt="Máquina">
+    </div>
+
+    <div class="slide">
+        <img src="./src/assets/minananatureza.jpg" alt="Mina">
+    </div>
+</div>
+```
+
+CSS:
+
+Foi criada a estilização do slideshow utilizando posicionamento absoluto, transições de opacidade e responsividade para dispositivos móveis.
+
+Principais elementos:
+
+```css
+.slideshow{
+    position: relative;
+    width: 50%;
+    height: 450px;
+    overflow: hidden;
+}
+
+.slide{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.slide.active{
+    opacity: 1;
+}
+```
+
+JavaScript:
+
+Inicialmente foi desenvolvido um slideshow utilizando:
+
+```js
+const slides = document.querySelectorAll('.slide');
+```
+
+Porém, esse código fazia todos os slideshows da página funcionarem como um único slideshow, ocasionando falhas, desaparecimento de imagens e transições incorretas.
+
+A solução foi criar um slideshow independente para cada container:
+
+```js
+document.querySelectorAll('.slideshow').forEach(slideshow => {
+
+    const slides = slideshow.querySelectorAll('.slide');
+    let atual = 0;
+
+    setInterval(() => {
+
+        slides[atual].classList.remove('active');
+
+        atual++;
+
+        if(atual >= slides.length){
+            atual = 0;
+        }
+
+        slides[atual].classList.add('active');
+
+    }, 4000);
+
+});
+```
+
+<!-- Resultado final:
+
+Cada seção passou a possuir seu próprio slideshow independente, exibindo imagens relacionadas ao tema apresentado. Além disso, foi implementada a alternância automática das imagens, melhorando a experiência visual e tornando a navegação mais dinâmica e intuitiva. -->
+
+<!-- --------------------------------------------------------------- -->
