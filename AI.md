@@ -330,3 +330,159 @@ Adicione esse CSS no final do seu arquivo:
 
 <!-- Resultado final: 
 diminui um pouco o titulo deixando o primeiro tamanho do clamp menor que o ultimo e adicionei esse media no fim do CSS -->
+
+<!-- --------------------------------------------------------------- -->
+
+<!-- Forms no quiz -->
+
+prompt: adicione um forms para contato dentro do quiz feito.
+
+<!-- RESPOSTA -->
+
+Troque esta parte do resultado do quiz
+
+Você tem isso:
+
+<div id="resultado-quiz" class="hidden">
+    <h3>Resultado Final</h3>
+    <p id="pontuacao-final"></p>
+    <p id="mensagem-final"></p>
+
+    <button id="reiniciar-quiz">Refazer Quiz</button>
+</div>
+
+Troque por isso:
+
+<div id="resultado-quiz" class="hidden">
+    <h3>Resultado Final</h3>
+    <p id="pontuacao-final"></p>
+    <p id="mensagem-final"></p>
+
+    <form id="form-contato">
+        <h4>Entre em contato</h4>
+
+        <input type="text" id="nome" placeholder="Digite seu nome">
+        <input type="email" id="email" placeholder="Digite seu e-mail">
+        <textarea id="mensagem" placeholder="Digite sua mensagem"></textarea>
+
+        <button type="submit">Enviar</button>
+
+        <p id="erro-form"></p>
+    </form>
+
+    <button id="reiniciar-quiz">Refazer Quiz</button>
+</div>
+
+
+CSS do formulário dentro do quiz
+
+Adicione no final do seu CSS:
+#form-contato {
+    width: 100%;
+    margin-top: 25px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#form-contato h4 {
+    color: var(--texto-principal);
+    font-family: var(--font-family1);
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+#form-contato input,
+#form-contato textarea {
+    width: 100%;
+    padding: 14px;
+
+    background-color: rgba(11, 11, 13, 0.9);
+    color: var(--texto-principal);
+
+    border: 1px solid var(--cor-destaque);
+    border-radius: 8px;
+
+    font-family: var(--font-family2);
+    outline: none;
+}
+
+#form-contato textarea {
+    height: 100px;
+    resize: none;
+}
+
+#form-contato input::placeholder,
+#form-contato textarea::placeholder {
+    color: var(--texto-secundario);
+}
+
+#form-contato input:focus,
+#form-contato textarea:focus {
+    border-color: var(--cor-destaque-claro);
+    box-shadow: 0 0 10px var(--cor-destaque);
+}
+
+#form-contato button {
+    padding: 14px;
+
+    background-color: transparent;
+    color: var(--texto-principal);
+
+    border: 1px solid var(--cor-destaque);
+    border-radius: 8px;
+
+    font-family: var(--font-family1);
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#form-contato button:hover {
+    background-color: var(--cor-destaque);
+    color: var(--fundo-principal);
+}
+
+#erro-form {
+    color: var(--cor-destaque-claro);
+    font-size: 1rem;
+    text-align: center;
+}
+
+JS da validação
+
+Coloque essa parte no seu script.js, de preferência depois do código do quiz:
+
+// FORMULÁRIO DENTRO DO QUIZ
+
+const formContato = document.getElementById("form-contato");
+const nome = document.getElementById("nome");
+const email = document.getElementById("email");
+const mensagem = document.getElementById("mensagem");
+const erroForm = document.getElementById("erro-form");
+
+if (formContato) {
+    formContato.addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        if (
+            nome.value.trim() === "" ||
+            email.value.trim() === "" ||
+            mensagem.value.trim() === ""
+        ) {
+            erroForm.textContent = "Preencha todos os campos antes de enviar.";
+            return;
+        }
+
+        erroForm.textContent = "Mensagem enviada com sucesso!";
+
+        nome.value = "";
+        email.value = "";
+        mensagem.value = "";
+    });
+}
+
+<!-- Resultado final: adicionei o forms com validação 

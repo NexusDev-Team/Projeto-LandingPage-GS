@@ -279,3 +279,33 @@ botaoProxima.addEventListener("click", proximaPergunta);
 botaoReiniciar.addEventListener("click", reiniciarQuiz);
 
 carregarPergunta();
+
+// FORMULÁRIO DENTRO DO QUIZ
+
+const formContato = document.getElementById("form-contato");
+const nome = document.getElementById("nome");
+const email = document.getElementById("email");
+const mensagem = document.getElementById("mensagem");
+const erroForm = document.getElementById("erro-form");
+
+if (formContato) {
+    formContato.addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        if (
+            nome.value.trim() === "" || 
+            email.value.trim() === "" ||
+
+            mensagem.value.trim() === ""
+        ) {
+            erroForm.textContent = "Preencha todos os campos antes de enviar.";
+            return;
+        }
+
+        erroForm.textContent = "Mensagem enviada com sucesso!";
+
+        nome.value = "";
+        email.value = "";
+        mensagem.value = "";
+    });
+}

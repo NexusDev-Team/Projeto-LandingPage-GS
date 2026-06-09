@@ -500,6 +500,80 @@ p {
 .hidden {
     display: none;
 }
+#form-contato {
+    width: 100%;
+    margin-top: 25px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#form-contato h4 {
+    color: var(--texto-principal);
+    font-family: var(--font-family1);
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+#form-contato input,
+#form-contato textarea {
+    width: 100%;
+    padding: 14px;
+
+    background-color: rgba(11, 11, 13, 0.9);
+    color: var(--texto-principal);
+
+    border: 1px solid var(--cor-destaque);
+    border-radius: 8px;
+
+    font-family: var(--font-family2);
+    outline: none;
+}
+
+#form-contato textarea {
+    height: 100px;
+    resize: none;
+}
+
+#form-contato input::placeholder,
+#form-contato textarea::placeholder {
+    color: var(--texto-secundario);
+}
+
+#form-contato input:focus,
+#form-contato textarea:focus {
+    border-color: var(--cor-destaque-claro);
+    box-shadow: 0 0 10px var(--cor-destaque);
+}
+
+#form-contato button {
+    padding: 14px;
+
+    background-color: transparent;
+    color: var(--texto-principal);
+
+    border: 1px solid var(--cor-destaque);
+    border-radius: 8px;
+
+    font-family: var(--font-family1);
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#form-contato button:hover {
+    background-color: var(--cor-destaque);
+    color: var(--fundo-principal);
+}
+
+#erro-form {
+    color: var(--cor-destaque-claro);
+    font-size: 1rem;
+    text-align: center;
+}
 @media (max-width: 768px) {
 
     header {
