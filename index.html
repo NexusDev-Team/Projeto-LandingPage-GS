@@ -223,7 +223,38 @@
         </section>
 
     </main>
-    
+    <section id="quiz-section">
+    <button id="abrir-quiz">Abrir Quiz</button>
+    </section>
+
+    <div id="modal-quiz" class="modal hidden">
+        <div class="modal-conteudo">
+
+            <button id="fechar-quiz" class="fechar-modal">X</button>
+
+            <div class="quiz-card">
+                <h2>Quiz TetraLab</h2>
+
+                <div id="quiz-area">
+                    <p id="numero-pergunta"></p>
+                    <h3 id="pergunta-quiz"></h3>
+
+                    <div id="opcoes-quiz"></div>
+
+                    <button id="proxima-quiz">Próxima</button>
+                </div>
+
+                <div id="resultado-quiz" class="hidden">
+                    <h3>Resultado Final</h3>
+                    <p id="pontuacao-final"></p>
+                    <p id="mensagem-final"></p>
+
+                    <button id="reiniciar-quiz">Refazer Quiz</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
     
     <!-- JS EXTERNO -->
      <script src="./src/js/script.js"></script>
