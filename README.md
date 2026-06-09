@@ -7,6 +7,13 @@ O **TetraLab** é uma plataforma desenvolvida para a **Global Solution FIAP 2026
 O projeto propõe uma solução tecnológica para auxiliar na **simulação, monitoramento e otimização da produção de materiais magnéticos sustentáveis**, contribuindo para reduzir impactos ambientais, dependência geopolítica e acelerar a inovação industrial.
 
 ---
+## 🖥 Landing Page
+
+Acesse a demonstração do projeto:
+
+🔗 https://nexusdev-team.github.io/Projeto-LandingPage-GS/
+
+---
 
 ## 🌎 O Problema
 
@@ -36,14 +43,6 @@ A plataforma integra:
 * Modelagem matemática
 
 Nosso objetivo é tornar a produção desse material cada vez mais eficiente e viável para aplicação industrial.
-
----
-
-## 🖥 Landing Page
-
-Acesse a demonstração do projeto:
-
-🔗 https://nexusdev-team.github.io/Projeto-LandingPage-GS/
 
 ---
 
