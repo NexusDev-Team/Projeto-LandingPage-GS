@@ -333,6 +333,588 @@ diminui um pouco o titulo deixando o primeiro tamanho do clamp menor que o ultim
 
 <!-- --------------------------------------------------------------- -->
 
+<!-- Quiz -->
+
+prompt: * meu index e meu css * 
+- Formulários com validação para impedir envio de campos vazios 
+- Quiz dinâmico contendo 10 perguntas sobre o tema 
+- Exibição do resultado final do quiz de fundo da página
+
+como adicionar no meu projeto.
+
+<!-- RESPOSTA -->
+
+Quiz com 10 perguntas
+
+Coloque esse HTML:
+
+<section id="quiz-section">
+    <div class="card quiz-card">
+        <h2>Quiz TetraLab</h2>
+
+        <div id="quiz-area">
+            <p id="numero-pergunta"></p>
+            <h3 id="pergunta-quiz"></h3>
+
+            <div id="opcoes-quiz"></div>
+
+            <button id="proxima-quiz">Próxima</button>
+        </div>
+
+        <div id="resultado-quiz" class="hidden">
+            <h3>Resultado Final</h3>
+            <p id="pontuacao-final"></p>
+            <p id="mensagem-final"></p>
+
+            <button id="reiniciar-quiz">Refazer Quiz</button>
+        </div>
+    </div>
+</section>
+
+CSS:
+
+.quiz-card {
+    max-width: 750px;
+    gap: 20px;
+}
+
+#numero-pergunta {
+    color: var(--cor-destaque-claro);
+    font-size: 1rem;
+}
+
+#pergunta-quiz {
+    color: var(--texto-principal);
+    font-family: var(--font-family2);
+    font-size: 1.4rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#opcoes-quiz {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.opcao {
+    padding: 14px;
+
+    background-color: rgba(11, 11, 13, 0.9);
+    color: var(--texto-secundario);
+
+    border: 1px solid var(--cor-destaque);
+    border-radius: 8px;
+
+    font-family: var(--font-family2);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.opcao:hover {
+    color: var(--texto-principal);
+    box-shadow: 0 0 12px var(--cor-destaque);
+}
+
+.opcao.selecionada {
+    background-color: var(--cor-destaque);
+    color: var(--fundo-principal);
+}
+
+#proxima-quiz,
+#reiniciar-quiz {
+    width: 100%;
+    margin-top: 20px;
+    padding: 14px;
+
+    background-color: transparent;
+    color: var(--texto-principal);
+
+    border: 1px solid var(--cor-destaque);
+    border-radius: 8px;
+
+    font-family: var(--font-family1);
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+#proxima-quiz:hover,
+#reiniciar-quiz:hover {
+    background-color: var(--cor-destaque);
+    color: var(--fundo-principal);
+}
+
+#resultado-quiz {
+    text-align: center;
+}
+
+#resultado-quiz h3 {
+    color: var(--cor-destaque);
+    font-family: var(--font-family1);
+    font-size: 2rem;
+}
+
+.hidden {
+    display: none;
+}
+
+JS:
+
+const perguntasQuiz = [
+    {
+        pergunta: "Qual problema o TetraLab busca resolver?",
+        opcoes: [
+            "Dependência de terras raras",
+            "Falta de redes sociais",
+            "Criação de jogos",
+            "Produção de papel"
+        ],
+        resposta: 0
+    },
+    {
+        pergunta: "O que é a tetrataenita?",
+        opcoes: [
+            "Um tipo de plástico",
+            "Um material magnético",
+            "Um combustível",
+            "Um software"
+        ],
+        resposta: 1
+    },
+    {
+        pergunta: "Onde a tetrataenita é encontrada naturalmente?",
+        opcoes: [
+            "Em meteoritos",
+            "Em árvores",
+            "Em oceanos",
+            "Em nuvens"
+        ],
+        resposta: 0
+    },
+    {
+        pergunta: "Qual material a tetrataenita pode substituir?",
+        opcoes: [
+            "Ímãs de terras raras",
+            "Vidro",
+            "Madeira",
+            "Papel"
+        ],
+        resposta: 0
+    },
+    {
+        pergunta: "Qual é um benefício ambiental do projeto?",
+        opcoes: [
+            "Mais poluição",
+            "Menor impacto ambiental",
+            "Mais mineração",
+            "Mais desperdício"
+        ],
+        resposta: 1
+    },
+    {
+        pergunta: "Quais tecnologias ajudam o TetraLab?",
+        opcoes: [
+            "Sensores e automação",
+            "Papel e caneta",
+            "Somente redes sociais",
+            "Nenhuma tecnologia"
+        ],
+        resposta: 0
+    },
+    {
+        pergunta: "Qual setor pode ser beneficiado?",
+        opcoes: [
+            "Mobilidade elétrica",
+            "Energia renovável",
+            "Setor aeroespacial",
+            "Todas as alternativas"
+        ],
+        resposta: 3
+    },
+    {
+        pergunta: "Qual é o objetivo do TetraLab?",
+        opcoes: [
+            "Viabilizar a produção da tetrataenita",
+            "Aumentar a dependência de terras raras",
+            "Criar foguetes caseiros",
+            "Substituir computadores"
+        ],
+        resposta: 0
+    },
+    {
+        pergunta: "Por que reduzir o uso de terras raras é importante?",
+        opcoes: [
+            "Reduz riscos ambientais e econômicos",
+            "Impede inovação",
+            "Aumenta a poluição",
+            "Dificulta a indústria"
+        ],
+        resposta: 0
+    },
+    {
+        pergunta: "Qual frase representa melhor o projeto?",
+        opcoes: [
+            "Inovação espacial aplicada à indústria sustentável",
+            "Tecnologia sem função",
+            "Mineração sem controle",
+            "Energia sem planejamento"
+        ],
+        resposta: 0
+    }
+];
+
+let perguntaAtual = 0;
+let pontuacao = 0;
+let opcaoSelecionada = null;
+
+const numeroPergunta = document.getElementById("numero-pergunta");
+const perguntaQuiz = document.getElementById("pergunta-quiz");
+const opcoesQuiz = document.getElementById("opcoes-quiz");
+const botaoProxima = document.getElementById("proxima-quiz");
+
+const quizArea = document.getElementById("quiz-area");
+const resultadoQuiz = document.getElementById("resultado-quiz");
+const pontuacaoFinal = document.getElementById("pontuacao-final");
+const mensagemFinal = document.getElementById("mensagem-final");
+const botaoReiniciar = document.getElementById("reiniciar-quiz");
+
+function carregarPergunta() {
+    opcaoSelecionada = null;
+
+    const pergunta = perguntasQuiz[perguntaAtual];
+
+    numeroPergunta.textContent = `Pergunta ${perguntaAtual + 1} de ${perguntasQuiz.length}`;
+    perguntaQuiz.textContent = pergunta.pergunta;
+
+    opcoesQuiz.innerHTML = "";
+
+    pergunta.opcoes.forEach((opcao, index) => {
+        const botao = document.createElement("button");
+
+        botao.textContent = opcao;
+        botao.classList.add("opcao");
+
+        botao.addEventListener("click", () => {
+            selecionarOpcao(botao, index);
+        });
+
+        opcoesQuiz.appendChild(botao);
+    });
+}
+
+function selecionarOpcao(botao, index) {
+    const todasOpcoes = document.querySelectorAll(".opcao");
+
+    todasOpcoes.forEach((opcao) => {
+        opcao.classList.remove("selecionada");
+    });
+
+    botao.classList.add("selecionada");
+    opcaoSelecionada = index;
+}
+
+function proximaPergunta() {
+    if (opcaoSelecionada === null) {
+        alert("Escolha uma alternativa antes de continuar.");
+        return;
+    }
+
+    if (opcaoSelecionada === perguntasQuiz[perguntaAtual].resposta) {
+        pontuacao++;
+    }
+
+    perguntaAtual++;
+
+    if (perguntaAtual < perguntasQuiz.length) {
+        carregarPergunta();
+    } else {
+        mostrarResultado();
+    }
+}
+
+function mostrarResultado() {
+    quizArea.classList.add("hidden");
+    resultadoQuiz.classList.remove("hidden");
+
+    pontuacaoFinal.textContent = `Você acertou ${pontuacao} de ${perguntasQuiz.length} perguntas.`;
+
+    if (pontuacao <= 4) {
+        mensagemFinal.textContent = "Você ainda está conhecendo o tema da tetrataenita.";
+    } else if (pontuacao <= 7) {
+        mensagemFinal.textContent = "Muito bom! Você entendeu bem a proposta do TetraLab.";
+    } else {
+        mensagemFinal.textContent = "Excelente! Você domina a ideia do projeto.";
+    }
+}
+
+function reiniciarQuiz() {
+    perguntaAtual = 0;
+    pontuacao = 0;
+    opcaoSelecionada = null;
+
+    resultadoQuiz.classList.add("hidden");
+    quizArea.classList.remove("hidden");
+
+    carregarPergunta();
+}
+
+botaoProxima.addEventListener("click", proximaPergunta);
+botaoReiniciar.addEventListener("click", reiniciarQuiz);
+
+carregarPergunta();
+
+
+depois pedi para ele deixar em forma de pop up:
+
+HTML: 
+<section id="quiz-section">
+    <button id="abrir-quiz">Abrir Quiz</button>
+</section>
+
+<div id="modal-quiz" class="modal hidden">
+    <div class="modal-conteudo">
+
+        <button id="fechar-quiz" class="fechar-modal">X</button>
+
+        <div class="quiz-card">
+            <h2>Quiz TetraLab</h2>
+
+            <div id="quiz-area">
+                <p id="numero-pergunta"></p>
+                <h3 id="pergunta-quiz"></h3>
+
+                <div id="opcoes-quiz"></div>
+
+                <button id="proxima-quiz">Próxima</button>
+            </div>
+
+            <div id="resultado-quiz" class="hidden">
+                <h3>Resultado Final</h3>
+                <p id="pontuacao-final"></p>
+                <p id="mensagem-final"></p>
+
+                <button id="reiniciar-quiz">Refazer Quiz</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+CSS:
+#quiz-section {
+    min-height: 100vh;
+    padding: 70px 5%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#abrir-quiz {
+    padding: 16px 28px;
+
+    background-color: transparent;
+    color: var(--texto-principal);
+
+    border: 1px solid var(--cor-destaque);
+    border-radius: 10px;
+
+    font-family: var(--font-family1);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#abrir-quiz:hover {
+    background-color: var(--cor-destaque);
+    color: var(--fundo-principal);
+    box-shadow: 0 0 18px var(--cor-destaque);
+}
+
+/* Fundo escuro do modal */
+.modal {
+    position: fixed;
+    inset: 0;
+
+    background-color: rgba(0, 0, 0, 0.85);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 9999;
+    padding: 20px;
+}
+
+/* Caixa central */
+.modal-conteudo {
+    width: 100%;
+    max-width: 750px;
+    position: relative;
+}
+
+/* Botão fechar */
+.fechar-modal {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+
+    width: 42px;
+    height: 42px;
+
+    background-color: var(--cor-destaque);
+    color: var(--fundo-principal);
+
+    border: none;
+    border-radius: 50%;
+
+    font-family: var(--font-family1);
+    font-weight: bold;
+
+    cursor: pointer;
+    z-index: 10000;
+}
+
+/* Card do quiz */
+.quiz-card {
+    width: 100%;
+    padding: 40px 32px;
+
+    background-color: rgba(3, 3, 3, 0.95);
+    border: 1px solid var(--cor-destaque);
+    border-radius: 18px;
+
+    box-shadow: 0 0 30px rgba(255, 106, 26, 0.35);
+}
+
+.quiz-card h2 {
+    color: var(--texto-principal);
+    font-family: var(--font-family1);
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+}
+
+#numero-pergunta {
+    color: var(--cor-destaque-claro);
+    font-size: 1rem;
+}
+
+#pergunta-quiz {
+    color: var(--texto-principal);
+    font-family: var(--font-family2);
+    font-size: 1.4rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#opcoes-quiz {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.opcao {
+    padding: 14px;
+
+    background-color: rgba(11, 11, 13, 0.9);
+    color: var(--texto-secundario);
+
+    border: 1px solid var(--cor-destaque);
+    border-radius: 8px;
+
+    font-family: var(--font-family2);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.opcao:hover {
+    color: var(--texto-principal);
+    box-shadow: 0 0 12px var(--cor-destaque);
+}
+
+.opcao.selecionada {
+    background-color: var(--cor-destaque);
+    color: var(--fundo-principal);
+}
+
+#proxima-quiz,
+#reiniciar-quiz {
+    width: 100%;
+    margin-top: 20px;
+    padding: 14px;
+
+    background-color: transparent;
+    color: var(--texto-principal);
+
+    border: 1px solid var(--cor-destaque);
+    border-radius: 8px;
+
+    font-family: var(--font-family1);
+    text-transform: uppercase;
+
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#proxima-quiz:hover,
+#reiniciar-quiz:hover {
+    background-color: var(--cor-destaque);
+    color: var(--fundo-principal);
+}
+
+#resultado-quiz {
+    text-align: center;
+}
+
+#resultado-quiz h3 {
+    color: var(--cor-destaque);
+    font-family: var(--font-family1);
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+JS:
+const abrirQuiz = document.getElementById("abrir-quiz");
+const fecharQuiz = document.getElementById("fechar-quiz");
+const modalQuiz = document.getElementById("modal-quiz");
+
+abrirQuiz.addEventListener("click", () => {
+    modalQuiz.classList.remove("hidden");
+});
+
+fecharQuiz.addEventListener("click", () => {
+    modalQuiz.classList.add("hidden");
+});
+
+modalQuiz.addEventListener("click", (event) => {
+    if (event.target === modalQuiz) {
+        modalQuiz.classList.add("hidden");
+    }
+});
+
+
+depois mudei o #quiz-section no css para deixar menos longe:
+ 
+ #quiz-section {
+    min-height: auto;
+    padding: 30px 5% 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+<!-- Resultado final: adicionei o quiz com 10 questões, não deixa avançar ser colocar a resposta, mostra resultado final e está em forma de pop up. clica no botão e abre o quiz -->
+
+<!-- --------------------------------------------------------------- -->
+
 <!-- Forms no quiz -->
 
 prompt: adicione um forms para contato dentro do quiz feito.
@@ -485,4 +1067,4 @@ if (formContato) {
     });
 }
 
-<!-- Resultado final: adicionei o forms com validação 
+<!-- Resultado final: adicionei o forms com validação que pede nome, email e uma mensagem. Está inserido no final do quiz -->
