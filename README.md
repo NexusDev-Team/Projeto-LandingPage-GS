@@ -9,7 +9,7 @@ O projeto propõe uma solução tecnológica para auxiliar na **simulação, mon
 ---
 ## 🖥 Landing Page
 
-Acesse a demonstração do projeto:
+Acesse a página do projeto:
 
 🔗 https://nexusdev-team.github.io/Projeto-LandingPage-GS/
 
