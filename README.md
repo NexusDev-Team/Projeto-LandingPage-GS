@@ -2,7 +2,7 @@
 
 > **From Space to Sustainable Industry**
 
-O **TetraLab** é uma plataforma desenvolvida para a **Global Solution FIAP 2026**, inspirada na descoberta da **tetrataenita**, um material encontrado em meteoritos que possui potencial para substituir ímãs produzidos com terras raras.
+O **TetraLab** é uma plataforma desenvolvida para a **Global Solution FIAP 2026**, originalizada na descoberta da **tetrataenita**, um material encontrado em meteoritos que possui potencial para substituir ímãs produzidos com terras raras.
 
 O projeto propõe uma solução tecnológica para auxiliar na **simulação, monitoramento e otimização da produção de materiais magnéticos sustentáveis**, contribuindo para reduzir impactos ambientais, dependência geopolítica e acelerar a inovação industrial.
 
@@ -24,7 +24,7 @@ Entretanto, a mineração desses materiais gera elevados impactos ambientais, al
 
 ## 💡 Nossa Solução
 
-O **TetraLab** utiliza tecnologias de software para estudar e otimizar a produção inspirada na tetrataenita.
+O **TetraLab** utiliza tecnologias de software para estudar e otimizar a produção da tetrataenita.
 
 A plataforma integra:
 
