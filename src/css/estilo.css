@@ -152,6 +152,23 @@ header nav ul li a:hover {
     display: block;
 }
 
+#titulo-header{
+    font-size:2rem;
+    color:var(--texto-principal);
+    font-family:var(--font-family1);
+    text-transform:uppercase;
+    letter-spacing:4px;
+}
+#titulo-header span{
+    color:var(--cor-destaque)
+}
+.barra-superior{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
 /* faixa de transição */
 .hero::after {
     content: "";
@@ -664,6 +681,11 @@ footer p {
     header nav ul li a {
         font-size: 0.9rem;
         letter-spacing: 2px;
+    }
+
+    .barra-superior{
+    flex-direction:column;
+    gap:15px;
     }
 
     #imgFundo {
